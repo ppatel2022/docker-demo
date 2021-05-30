@@ -1,4 +1,9 @@
-node {
+pipeline {
+   environment {
+   registry = "patelpareshr/nodejs-demo"
+   registryCredential = 'dockerhub'
+    dockerImage = ''  
+   }
    def commit_id
    stage('Preparation') {
      checkout scm
@@ -12,9 +17,12 @@ node {
      }
    }
    stage('docker build/push') {
-      
+      steps {
+         script {
+            
+            
      docker.withRegistry('https://registry.hub.docker.com', dockerhub) 
-       def app = docker.build('patelpareshr/nodejs-demo:${commit_id}', '.').push()
-     
+       def app = docker.build('patelpareshr/nodejs-demo' + ':$commit_id', '.').push()
+         }}
    }
 }
