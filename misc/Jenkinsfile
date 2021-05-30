@@ -1,9 +1,4 @@
-pipeline {
-   environment {
-   registry = "patelpareshr/nodejs-demo"
-   registryCredential = 'dockerhub'
-    dockerImage = ''  
-   }
+node {
    def commit_id
    stage('Preparation') {
      checkout scm
