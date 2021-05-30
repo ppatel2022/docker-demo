@@ -14,7 +14,13 @@ node {
    stage('docker build/push') {
       
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        console.log('============= PRPRPRPRPR ===============');
+        console.log(dockerhub);
+        
+        console.log('=========================================');
        def app = docker.build("patelpareshr/nodejs-demo:${commit_id}", '.').push()
+        console.log(app);
+        console.log('=======================Above is APP value =============');
      }
    }
 }
